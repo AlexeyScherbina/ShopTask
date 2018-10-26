@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html ng-app="ShopApp">
+<head>
+    <title>ShopApp</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#!home">ShopApp</a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Client"))
+                    {
+                        @Html.Raw("<li><a href='#!cart'>Cart</a></li>")
+                    }
+
+                    if (User.IsInRole("Seller"))
+                    {
+                        @Html.Raw("<li><a href='#!manage'>Manage</a></li>")
+                    }
+                    <li>
+                        @Html.ActionLink("Log out", "LogOff", "Account")
+                    </li>
+                }
+                else
+                {
+                    @Html.Raw("<li><a href='#!login'>Sign In</a></li>")
+                }
+            </ul>
+        </div>
+    </nav>
+
+    <!--<ul>
+        <li><a href="#!routeOne">Route One</a></li>
+        <li><a href="#!routeTwo">Route Two</a></li>
+        <li><a href="#!routeThree">Route Three</a></li>
+    </ul>
+
+    <ul>
+        <li><a href="#!login">Login</a></li>
+        <li><a href="#!register">Register</a></li>
+    </ul>-->
+
+    <div ng-view></div>
+
+    @Scripts.Render("~/bundles/ShopApp")
+</body>
+</html>

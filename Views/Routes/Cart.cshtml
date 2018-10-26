@@ -1,0 +1,20 @@
+﻿<div ng-show="GetProducts().length>0" style="padding:20px;">
+    <div class="col-12" style="margin-bottom: 20px;" ng-repeat="p in GetProducts()">
+        <div class="product">
+            <strong>{{p.ProductName}}</strong>
+            Price: ${{p.ProductPrice}} 
+            Available: {{p.ProductNumber}}
+            Buy:
+            <input type="number" min="0" max="{{p.ProductNumber}}" ng-model="p.count" /></br>
+            <button ng-click="Remove(p)" class="btn">Remove</button>
+        </div>
+    </div>
+    <div>
+        Total:
+        ${{GetTotal()}}
+    </div>
+    <button ng-disabled="!Ready()" ng-click="Buy()" class="btn">Buy</button>
+</div>
+<div ng-show="GetProducts().length === 0">
+    Cart is empty.
+</div>

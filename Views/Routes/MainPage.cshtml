@@ -1,0 +1,20 @@
+﻿<div style="padding:20px;">
+    <div class="col-sm-6 col-md-4 col-lg-3" style="margin-bottom: 20px;" ng-repeat="p in products">
+        <div class="product">
+            <strong>{{p.ProductName}}</strong>
+            <div class="col-6">
+                Price:
+                <p>${{p.ProductPrice}}</p>
+            </div>
+            <div class="col-6">
+                Available:
+                <p>{{p.ProductNumber}}</p>
+            </div>
+            @if (User.IsInRole("Client"))
+            {
+            @Html.Raw("<button ng-click='AddToCart(p)' ng-disabled='p.ProductNumber < 1' class='btn'>Add to cart</button>")
+            }
+            
+        </div>
+    </div>
+</div>

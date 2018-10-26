@@ -1,0 +1,52 @@
+﻿<div>
+
+    <form name="myForm" ng-submit="AddProduct(newProduct)" novalidate class="container">
+
+        <div class="form-group">
+            <label for="name">Product Name:</label>
+            <input class="form-control inputField" type="text" name="name" ng-model="newProduct.ProductName" id="name" required />
+        </div>
+
+        <div class="form-group">
+            <label for="price">Product Price:</label>
+            <input class="form-control inputField" type="number" min="0" name="price" ng-model="newProduct.ProductPrice" id="price" required />
+        </div>
+
+        <div class="form-group">
+            <label for="number">Product Number:</label>
+            <input class="form-control inputField" type="number" min="0" name="number" ng-model="newProduct.ProductNumber" id="number" required />
+        </div>
+
+        <button ng-disabled="newProduct.ProductPrice < 0 || newProduct.ProductNumber < 0 || newProduct.ProductName.length < 1 || newProduct.ProductNumber===undefined || newProduct.ProductPrice===undefined" class="btn" type="submit">Add product</button>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Number</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="p in products">
+                <th scope="row">{{$index+1}}</th>
+                <td>
+                    <input class="form-control" type="text" ng-model="p.ProductName" />
+                </td>
+                <td>
+                    <input class="form-control" type="number" min="0" ng-model="p.ProductPrice" />
+                </td>
+                <td>
+                    <input class="form-control" type="number" min="0" ng-model="p.ProductNumber" />
+                </td>
+                <td>
+                    <button class="btn" ng-click="UpdateProduct(p)" ng-disabled="p.ProductPrice < 0 || p.ProductNumber < 0 || p.ProductName.length < 1 || p.ProductNumber===undefined || p.ProductPrice===undefined">Update</button>
+                    <button class="btn" ng-click="DeleteProduct(p)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
